@@ -12,7 +12,8 @@ echo "RUN rm ${TARGET_BINARY}.c" >> Dockerfile
 echo 'ENTRYPOINT ["'${BASH}'"]' >> Dockerfile
 
 #Building the container.
-docker build . -t qascade/rev_engg_kali:0.5.0 #&> /dev/null
+docker build . -t qascade/rev_engg_kali:0.5.0 &> /dev/null
+cat Dockerfile 
 rm Dockerfile 
 
 #running container as a child process
