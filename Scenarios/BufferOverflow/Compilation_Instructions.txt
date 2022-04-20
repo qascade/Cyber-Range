@@ -1,0 +1,10 @@
+All the binaries are compiled considering 32( add -m32 tag to instruct compiler to compile using 32 bit libraries) bit machines. By default gcc compiler adds stack protector to prevent stack smashing. 
+
+To Disable Canary: 
+	gcc vuln.c -o vuln_disable_canary -fno-stack-protector
+To Disable DEP:
+	gcc vuln.c -o vuln_disable_dep -z execstack
+To Disable PIE(Position Independent Execution):
+	gcc vuln.c -o vuln_disable_pie -no-pie
+To Disable all protection Mechanisms: 
+	gcc vuln.c -o vuln_disable_all -fno-stack-protector -z execstack -no-pie

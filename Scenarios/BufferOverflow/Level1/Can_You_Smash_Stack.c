@@ -11,8 +11,8 @@ int main(int argc, char **argv)
   gets(buffer);
 
   if(to_be_modded != 0) {
-      printf("cyberSheild{Y0u_M0difieD_th3_v@riAbl3}");
+      printf("cyberSheild{Y0u_Sm@sh3d_S0m3_St@ck}");
   } else {
-      printf("Try again?\n");
+      printf("Smashing Stack is not some Child's play!!");
   }
 }
