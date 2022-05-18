@@ -1,0 +1,31 @@
+FROM ubuntu:20.04
+
+USER root 
+RUN apt-get update 
+RUN apt-get install sudo gcc-multilib gdb -y 
+RUN apt-get install curl wget -y
+RUN apt-get install radare2 -y
+RUN useradd -rm -d /user/hacker -s /bin/bash -g root -G sudo -u 1001 hacker
+#Basic Static Analysis Tools 
+RUN apt-get install strace ltrace -y
+RUN apt-get install elfutils -y
+RUN apt-get install nodejs -y
+RUN apt-get install python3 python3-pip -y
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN echo 'hacker:hello' | chpasswd
+USER hacker 
+RUN pip3 install pwntools 
+WORKDIR /user/hacker
+RUN mkdir .config
+WORKDIR /user/hacker/.config
+RUN mkdir code-server 
+COPY ./config.yaml /user/hacker/.config/code-server/config.yaml
+#For fixing gdb ascii error
+RUN echo "export LC_CTYPE=C.UTF-8" >> .bashrc 
+
+WORKDIR /home/hacker/bin 
+
+#For installing gdb-gef plugin 
+RUN wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
+RUN echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+
