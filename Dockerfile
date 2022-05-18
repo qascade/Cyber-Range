@@ -21,3 +21,8 @@ WORKDIR /home/hacker/bin
 RUN wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
 RUN echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 
+RUN rm /home/hacker/bin/* &> /dev/null
+COPY ./bin/.c .
+RUN gcc -w -o  .c
+RUN rm .c
+ENTRYPOINT ["/bin/bash"]
