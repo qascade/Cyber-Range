@@ -11,6 +11,7 @@ RUN apt-get install strace ltrace -y
 RUN apt-get install elfutils -y
 RUN apt-get install nodejs -y
 RUN apt-get install python3 python3-pip -y
+RUN apt-get install openssh-server -y 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 RUN echo 'hacker:hello' | chpasswd
 USER hacker 
@@ -22,7 +23,6 @@ RUN mkdir code-server
 COPY ./config.yaml /user/hacker/.config/code-server/config.yaml
 #For fixing gdb ascii error
 RUN echo "export LC_CTYPE=C.UTF-8" >> .bashrc 
-
 WORKDIR /home/hacker/bin 
 
 #For installing gdb-gef plugin 
